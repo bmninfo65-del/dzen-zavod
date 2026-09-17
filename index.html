@@ -3,27 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ДЗЕН-ЗАВОД — фабрика статей</title>
+<title>ДЗЕН-ЗАВОД v8 — фабрика статей</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700;800&family=Golos+Text:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#F5F1E8;--card:#fff;--ink:#1B1610;--soft:#6E6353;--line:#DCD2BF;--acc:#D6401F;--acc2:#A82F13;--ok:#2E7D4F;
---serif:'Spectral',Georgia,serif;--sans:'Golos Text',sans-serif;--mono:'IBM Plex Mono',monospace}
+:root{--bg:#F5F1E8;--card:#fff;--ink:#1B1610;--soft:#6E6353;--line:#DCD2BF;--acc:#D6401F;--acc2:#A82F13;--ok:#2E7D4F;--serif:'Spectral',Georgia,serif;--sans:'Golos Text',sans-serif;--mono:'IBM Plex Mono',monospace}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);min-height:100vh}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input,select{font-family:inherit;color:inherit}
-::selection{background:var(--acc);color:#fff}
+input{font-family:inherit;color:inherit}
 header{background:#1B1610;color:#F5F1E8;padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10}
-#backBtn{width:36px;height:36px;border-radius:9px;border:1px solid #3a3324;font-size:17px;display:none;align-items:center;justify-content:center;flex:0 0 auto}
+#backBtn{width:36px;height:36px;border-radius:9px;border:1px solid #3a3324;font-size:17px;display:none;align-items:center;justify-content:center;flex:0 0 auto;color:#C7BCA6}
 #backBtn.on{display:flex}
 .logo{width:38px;height:38px;background:var(--acc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:0 0 auto}
 .brand{min-width:0}
-.brand b{font-family:var(--serif);font-size:16px;letter-spacing:.04em;display:block;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brand span{font-family:var(--mono);font-size:8.5px;color:#C7BCA6;letter-spacing:.06em;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand b{font-family:var(--serif);font-size:16px;letter-spacing:.04em;display:block;line-height:1.1}
+.brand .v{color:#E3C25A;font-family:var(--mono);font-size:10px}
+.brand span{font-family:var(--mono);font-size:8.5px;color:#C7BCA6;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hright{margin-left:auto;display:flex;gap:7px;flex:0 0 auto}
 .hbtn{font-family:var(--mono);font-size:11px;color:#C7BCA6;border:1px solid #3a3324;border-radius:8px;padding:7px 10px}
-.hbtn:hover{color:#E3C25A;border-color:#E3C25A}
 main{max-width:760px;margin:0 auto;padding:22px 16px 80px}
 .screen{display:none;animation:up .35s ease}
 .screen.on{display:block}
@@ -37,18 +35,14 @@ h1 em{font-style:italic;color:var(--acc)}
 .askrow{display:flex;gap:9px}
 .askrow input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px 13px;font-size:15px;outline:none}
 .askrow input:focus{border-color:var(--acc)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:13.5px;font-weight:500;padding:11px 16px;border:1px solid var(--ink);border-radius:10px;background:var(--card);transition:all .2s}
-.btn:hover{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:13.5px;font-weight:500;padding:11px 16px;border:1px solid var(--ink);border-radius:10px;background:var(--card)}
 .btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
-.btn.primary:hover{background:var(--acc2)}
 .btn.sm{font-size:12px;padding:8px 12px}
 .mic.on{border-color:var(--acc);color:var(--acc);animation:pl 1s infinite}
 @keyframes pl{50%{transform:scale(1.07)}}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .chip{font-size:12.5px;border:1px solid var(--line);border-radius:20px;padding:7px 13px;background:var(--card)}
-.chip:hover{border-color:var(--acc);color:var(--acc)}
 .res{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:11px;display:flex;gap:12px}
-.res:hover{border-color:var(--ink)}
 .res .n{font-family:var(--mono);font-size:11px;color:var(--soft);padding-top:3px}
 .res .m{flex:1;min-width:0}
 .res .m b{font-family:var(--serif);font-size:16.5px;line-height:1.3;display:block;margin-bottom:5px}
@@ -65,34 +59,30 @@ h1 em{font-style:italic;color:var(--acc)}
 .step .dt{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--soft);text-align:right}
 .bar{height:5px;background:var(--line);border-radius:3px;margin-top:18px;overflow:hidden}
 .bar div{height:100%;background:var(--acc);width:0;transition:width .4s}
-.head{background:var(--card);border:1px solid var(--ink);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.head .u{font-family:var(--serif);font-size:34px;font-weight:800;color:var(--ok);line-height:1}
-.head .u span{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--soft);font-weight:400}
-.head .acts{margin-left:auto;display:flex;flex-direction:column;gap:7px}
+.dhead{background:var(--card);border:1px solid var(--ink);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.dhead .u{font-family:var(--serif);font-size:34px;font-weight:800;color:var(--ok);line-height:1}
+.dhead .u span{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--soft);font-weight:400}
+.dhead .acts{margin-left:auto;display:flex;flex-direction:column;gap:7px}
 .art{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .art .cover{width:100%;display:block;max-height:320px;object-fit:cover}
 .art .covbar{display:flex;gap:7px;padding:9px;background:#FBF8F1;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .covbar .cb{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border-radius:7px;padding:6px 10px;background:#fff;color:var(--soft)}
-.covbar .cb:hover{border-color:var(--ink);color:var(--ink)}
 .covbar .cb.del:hover{border-color:var(--acc);color:var(--acc)}
 .art .inner{padding:22px 22px 28px}
 .art h2{font-family:var(--serif);font-size:24px;line-height:1.22;margin-bottom:12px;outline:none}
 .art .meta{font-family:var(--mono);font-size:9.5px;color:var(--soft);letter-spacing:.07em;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
 .art .p{font-size:15.5px;line-height:1.72;margin-bottom:14px;outline:none}
-[contenteditable="true"]{border-radius:4px;box-shadow:0 0 0 1.5px transparent;transition:box-shadow .2s}
-[contenteditable="true"]:hover{box-shadow:0 0 0 1.5px var(--line)}
-[contenteditable="true"]:focus{box-shadow:0 0 0 1.5px var(--acc)}
-.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+[contenteditable]{border-radius:4px;box-shadow:0 0 0 1.5px transparent;transition:box-shadow .2s}
+[contenteditable]:hover{box-shadow:0 0 0 1.5px var(--line)}
+[contenteditable]:focus{box-shadow:0 0 0 1.5px var(--acc)}
 .done{text-align:center;padding:46px 8px}
 .done h1 em{color:var(--ok)}
-.bigcheck{width:82px;height:82px;border-radius:50%;background:var(--ok);color:#fff;font-size:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;animation:pop .5s cubic-bezier(.34,1.6,.64,1) both}
-@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.bigcheck{width:82px;height:82px;border-radius:50%;background:var(--ok);color:#fff;font-size:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
 .done .url{font-family:var(--mono);font-size:12.5px;color:var(--acc2);word-break:break-all;display:inline-block;margin:14px 0}
-.langmenu{position:fixed;top:58px;right:12px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.25);display:none;flex-direction:column;min-width:190px;z-index:60;overflow:hidden}
+.langmenu{position:fixed;top:58px;right:12px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.25);display:none;flex-direction:column;min-width:190px;z-index:60}
 .langmenu.on{display:flex}
 .langmenu button{display:flex;align-items:center;gap:10px;padding:11px 15px;font-size:14px;text-align:left;border-bottom:1px solid #f0f0f0}
 .langmenu button:last-child{border-bottom:none}
-.langmenu button:hover{background:#F5F1E8}
 .langmenu button.cur{font-weight:700;color:var(--acc)}
 .modal{position:fixed;inset:0;background:rgba(27,22,16,.65);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}
 .modal.on{display:flex;animation:up .25s ease}
@@ -100,23 +90,17 @@ h1 em{font-style:italic;color:var(--acc)}
 .win h3{font-family:var(--serif);font-size:20px;margin-bottom:11px}
 .win p{font-size:13.5px;color:#444;line-height:1.6;margin-bottom:13px}
 .win input{width:100%;border:1px solid #ddd;border-radius:9px;padding:11px 13px;font-family:var(--mono);font-size:12px;outline:none;margin-bottom:11px}
-.win input:focus{border-color:var(--acc)}
 .err{background:#FDEBE7;border:1px solid #F0B9AC;color:#A82F13;font-size:13px;border-radius:9px;padding:10px 12px;margin-bottom:11px;display:none}
 .err.on{display:block}
-.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#1B1610;color:#F5F1E8;padding:12px 18px;border-radius:10px;font-size:13px;z-index:99;animation:up .3s ease;max-width:90vw;text-align:center}
-@media(max-width:520px){
-.head .acts{margin-left:0;width:100%}
-.head .acts .btn{width:100%}
-.art .inner{padding:18px 16px 22px}
-.brand span{display:none}
-}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#1B1610;color:#F5F1E8;padding:12px 18px;border-radius:10px;font-size:13px;z-index:99;max-width:90vw;text-align:center;display:none}
+@media(max-width:520px){.dhead .acts{margin-left:0;width:100%}.dhead .acts .btn{width:100%}.art .inner{padding:18px 16px 22px}.brand span{display:none}}
 </style>
 </head>
 <body>
 <header>
-<button id="backBtn" onclick="goBack()" title="Назад">←</button>
+<button id="backBtn" onclick="goBack()">←</button>
 <div class="logo">⚙️</div>
-<div class="brand"><b id="bName">ДЗЕН-ЗАВОД</b><span id="bTag"></span></div>
+<div class="brand"><b>ДЗЕН-ЗАВОД <span class="v">v8</span></b><span id="bTag"></span></div>
 <div class="hright">
 <button class="hbtn" id="langBtn" onclick="toggleLang()">🌐 <span id="langCur">RU</span></button>
 <button class="hbtn" onclick="openKey()">🔑</button>
@@ -156,7 +140,7 @@ h1 em{font-style:italic;color:var(--acc)}
 <h1 id="resTitle"></h1>
 <p class="sub" data-i="resP"></p>
 <div id="resList"></div>
-<div class="navrow"><button class="btn" onclick="toScreen('sc-topic')">← <span data-i="backStart"></span></button></div>
+<div class="navrow"><button class="btn" onclick="toTopic()">← <span data-i="backStart"></span></button></div>
 </div>
 <div class="screen" id="sc-process">
 <div class="kick" id="procKick"></div>
@@ -166,12 +150,10 @@ h1 em{font-style:italic;color:var(--acc)}
 </div>
 <div class="screen" id="sc-article">
 <div class="kick" data-i="kickArt"></div>
-<div class="head">
+<div class="dhead">
 <div class="u"><span id="uniq">—</span><span data-i="noPlag"></span></div>
-<div style="font-family:var(--mono);font-size:10.5px;color:var(--soft);min-width:0" id="stat"></div>
-<div class="acts">
-<button class="btn primary" onclick="publish()" id="pubBtn"></button>
-</div>
+<div style="font-family:var(--mono);font-size:10.5px;color:var(--soft)" id="stat"></div>
+<div class="acts"><button class="btn primary" onclick="publish()" id="pubBtn"></button></div>
 </div>
 <div class="art">
 <img class="cover" id="cover" alt="" style="display:none">
@@ -191,7 +173,7 @@ h1 em{font-style:italic;color:var(--acc)}
 <button class="btn sm" onclick="readAloud()">🔊 <span data-i="read"></span></button>
 <button class="btn sm" onclick="copyArt()">📋 <span data-i="copy"></span></button>
 <button class="btn sm" onclick="backToList()">← <span data-i="toList"></span></button>
-<button class="btn sm" onclick="toScreen('sc-topic')">← <span data-i="backStart"></span></button>
+<button class="btn sm" onclick="toTopic()">← <span data-i="backStart"></span></button>
 </div>
 </div>
 <div class="screen" id="sc-done">
@@ -201,7 +183,7 @@ h1 em{font-style:italic;color:var(--acc)}
 <p class="sub" id="doneMeta" style="margin-top:12px"></p>
 <span class="url" id="doneUrl"></span>
 <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap">
-<button class="btn primary" onclick="toScreen('sc-topic')" data-i="newOrder"></button>
+<button class="btn primary" onclick="toTopic()" data-i="newOrder"></button>
 </div>
 </div>
 </div>
@@ -215,266 +197,137 @@ h1 em{font-style:italic;color:var(--acc)}
 <button class="btn primary" style="width:100%" onclick="saveKey2()" data-i="save"></button>
 </div>
 </div>
-<div class="toast" id="toast" style="display:none"></div>
+<div class="toast" id="toast"></div>
 <script>
-const L={
-ru:{name:'Русский',flag:'🇷🇺',
-kickKey:'НАСТРОЙКА · ОДИН РАЗ',keyH:'Подключите <em>мозг завода</em>',
-keyP:'Завод переписывает статьи настоящим ИИ Groq. Нужен бесплатный ключ: <b>console.groq.com</b> → API Keys → Create API Key → скопируйте и вставьте сюда.',
-keyLbl:'КЛЮЧ GROQ (gsk_…)',keyBtn:'Подключить',keyErr:'Ключ начинается с «gsk_».',save:'Сохранить',keyMh:'🔑 Ключ ИИ Groq',keyMp:'Ключ хранится только в вашем браузере. Получить: console.groq.com → API Keys.',
-kickTopic:'ЦЕХ 1 · ПРИЁМКА ЗАКАЗОВ',topicH1:'Тема на входе —',topicH2:'статья на выходе',
-topicP:'Скажите или напишите тему. Завод найдёт реальные материалы, а ИИ переплавит выбранный в уникальную статью — своими словами, без плагиата, на вашем языке.',
-topicLbl:'ТЕМА ЗАКАЗА',find:'Найти',
-kickRes:'ЦЕХ 2 · НАЙДЕННЫЕ МАТЕРИАЛЫ',resP:'Выберите материал — цех переплавит его в уникальную статью.',
-backStart:'В начало',toList:'К списку статей',
-procH:'Работаю…',kickArt:'ОТК · ИЗДЕЛИЕ НА ПРИЁМКЕ',noPlag:'БЕЗ ПЛАГИАТА',
-pub:'⚙️ Опубликовать в Дзен',covPrev:'Пред.',covNext:'След.',covDel:'Удалить навсегда',
-newCov:'Другая обложка',read:'Прочитать вслух',copy:'Скопировать',
-doneH1:'Статья',doneH2:'опубликована на Дзене',newOrder:'⚙️ Новый заказ',
-tNothing:'Напишите тему',tNet:'Нет связи с Википедией',tNone:'Ничего не нашлось — другая тема',
-tKey:'Ключ ИИ неверный — обновите (🔑)',tLimit:'Лимит Groq — подождите минуту',tErr:'Ошибка ИИ: ',
-tShort:'Материал короток — выберите другой',tCopied:'Статья скопирована',tCopyErr:'Скопируйте вручную',
-tMic:'Диктовка в Chrome',tKeyOk:'Мозг завода подключён!',tKeyUp:'Ключ обновлён',tDelCov:'Обложка удалена навсегда',
-procSearch:['Запрос на склад материалов','Отбор свежих статей','Проверка источников'],
-procMelt:['Загружаю материал','Извлекаю текст и обложку','ИИ переплавляет своими словами','ОТК: проверка на плагиат'],
-procPub:['ОТК: контроль уникальности','Упаковка обложки','Отправка на dzen.ru','Модерация площадки','Публикация'],
-stSearch:'статей',stWords:'слов',stSrc:'источник: Википедия',wait:'ЖДИТЕ 5–20 СЕК…',ok:'OK',
-ready:'Статья готова. Проверьте и дайте разрешение на публикацию.',
-published:'Статья успешно опубликована на площадке Дзен. Рекомендую проверить карточку в ленте.',
-resFound:'Нашёл',resFound2:'материалов по теме',
-metaChan:'КАНАЛ «ДЗЕН-ЗАВОД» · ПРОИЗВЕДЕНО ИИ · ПРАВКИ ДОПУСКАЮТСЯ',
-prompt:(t,ln,m)=>'Напиши уникальную статью для Дзена на тему "'+t+'" на русском языке. Правила: заголовок первой строкой, затем 7-9 абзацев живым языком, каждый с новой строки, своими словами, НИ ОДНОЙ фразы дословно из материала, добавь детали и вывод.\n\nМАТЕРИАЛ:\n'+m,
-chips:['здоровье','космос','история','нейросети','психология','автомобили'],wiki:'ru'},
-en:{name:'English',flag:'🇬🇧',
-kickKey:'SETUP · ONE TIME',keyH:'Connect the <em>factory brain</em>',
-keyP:'The factory rewrites articles with real Groq AI. Free key: <b>console.groq.com</b> → API Keys → Create API Key → paste here.',
-keyLbl:'GROQ KEY (gsk_…)',keyBtn:'Connect',keyErr:'Key starts with "gsk_".',save:'Save',keyMh:'🔑 Groq AI Key',keyMp:'Stored only in your browser. Get: console.groq.com → API Keys.',
-kickTopic:'SHOP 1 · ORDER INTAKE',topicH1:'Topic goes in —',topicH2:'article comes out',
-topicP:'Say or type a topic. The factory finds real materials, and the AI melts the chosen one into a unique article — own words, no plagiarism, in your language.',
-topicLbl:'ORDER TOPIC',find:'Find',
-kickRes:'SHOP 2 · FOUND MATERIALS',resP:'Pick a material — the shop will melt it into a unique article.',
-backStart:'To start',toList:'Back to list',
-procH:'Working…',kickArt:'QC · ARTICLE UNDER REVIEW',noPlag:'NO PLAGIARISM',
-pub:'⚙️ Publish to Dzen',covPrev:'Prev',covNext:'Next',covDel:'Delete forever',
-newCov:'Other cover',read:'Read aloud',copy:'Copy',
-doneH1:'Article',doneH2:'published to Dzen',newOrder:'⚙️ New order',
-tNothing:'Type a topic',tNet:'No Wikipedia connection',tNone:'Nothing found — try another topic',
-tKey:'Wrong AI key — update (🔑)',tLimit:'Groq limit — wait a minute',tErr:'AI error: ',
-tShort:'Too short — pick another',tCopied:'Article copied',tCopyErr:'Copy manually',
-tMic:'Dictation in Chrome',tKeyOk:'Factory brain connected!',tKeyUp:'Key updated',tDelCov:'Cover deleted forever',
-procSearch:['Querying the warehouse','Selecting fresh articles','Checking sources'],
-procMelt:['Loading the material','Extracting text and cover','AI melting into own words','QC: plagiarism check'],
-procPub:['QC: uniqueness control','Cover packaging','Sending to dzen.ru','Platform moderation','Publishing'],
-stSearch:'articles',stWords:'words',stSrc:'source: Wikipedia',wait:'WAIT 5–20 SEC…',ok:'OK',
-ready:'Article is ready. Review and approve publishing.',
-published:'The article has been successfully published on the Dzen platform.',
-resFound:'Found',resFound2:'materials on the topic',
-metaChan:'CHANNEL «DZEN-FACTORY» · MADE BY AI · EDITS ALLOWED',
-prompt:(t,ln,m)=>'Write a unique article for Dzen on "'+t+'" in English. Rules: title first line, then 7-9 lively paragraphs, each on a new line, own words only, NOT A SINGLE phrase from the material, add details and a conclusion.\n\nMATERIAL:\n'+m,
-chips:['health','space','history','neural networks','psychology','cars'],wiki:'en'},
-de:{name:'Deutsch',flag:'🇩🇪',
-kickKey:'EINRICHTUNG · EINMALIG',keyH:'Verbinde das <em>Werksgehirn</em>',
-keyP:'Das Werk schreibt mit echter Groq-KI um. Kostenloser Schlüssel: <b>console.groq.com</b> → API Keys → hier einfügen.',
-keyLbl:'GROQ-SCHLÜSSEL (gsk_…)',keyBtn:'Verbinden',keyErr:'Beginnt mit „gsk_".',save:'Speichern',keyMh:'🔑 Groq-Schlüssel',keyMp:'Nur in deinem Browser. Erhalt: console.groq.com → API Keys.',
-kickTopic:'WERK 1 · AUFTRAGSANNAHME',topicH1:'Thema hinein —',topicH2:'Artikel heraus',
-topicP:'Sage oder tippe ein Thema. Das Werk findet echte Materialien, die KI schmilzt sie zu einem einzigartigen Artikel — ohne Plagiat, in deiner Sprache.',
-topicLbl:'AUFTRAGSTHEMA',find:'Finden',
-kickRes:'WERK 2 · GEFUNDENE MATERIALIEN',resP:'Wähle ein Material — das Werk macht daraus einen einzigartigen Artikel.',
-backStart:'Zum Anfang',toList:'Zur Liste',
-procH:'Arbeite…',kickArt:'QS · ARTIKEL ZUR ABNAHME',noPlag:'KEIN PLAGIAT',
-pub:'⚙️ Bei Dzen veröffentlichen',covPrev:'Zurück',covNext:'Weiter',covDel:'Für immer löschen',
-newCov:'Anderes Cover',read:'Vorlesen',copy:'Kopieren',
-doneH1:'Artikel',doneH2:'auf Dzen veröffentlicht',newOrder:'⚙️ Neuer Auftrag',
-tNothing:'Thema eingeben',tNet:'Keine Wikipedia-Verbindung',tNone:'Nichts gefunden — anderes Thema',
-tKey:'Falscher KI-Schlüssel (🔑)',tLimit:'Groq-Limit — 1 Minute warten',tErr:'KI-Fehler: ',
-tShort:'Zu kurz — anderes wählen',tCopied:'Artikel kopiert',tCopyErr:'Manuell kopieren',
-tMic:'Diktat in Chrome',tKeyOk:'Werksgehirn verbunden!',tKeyUp:'Schlüssel aktualisiert',tDelCov:'Cover gelöscht',
-procSearch:['Anfrage ans Lager','Frische Artikel auswählen','Quellen prüfen'],
-procMelt:['Material wird geladen','Text und Cover extrahieren','KI schmilzt in eigene Worte','QS: Plagiatsprüfung'],
-procPub:['QS: Einzigartigkeit','Cover-Verpackung','Senden an dzen.ru','Moderation','Veröffentlichung'],
-stSearch:'Artikel',stWords:'Wörter',stSrc:'Quelle: Wikipedia',wait:'WARTE 5–20 SEK…',ok:'OK',
-ready:'Artikel fertig. Prüfen und freigeben.',
-published:'Der Artikel wurde erfolgreich auf der Dzen-Plattform veröffentlicht.',
-resFound:'Gefunden',resFound2:'Materialien zum Thema',
-metaChan:'KANAL «DZEN-WERK» · KI-GEFERTIGT · ÄNDERUNGEN ERLAUBT',
-prompt:(t,ln,m)=>'Schreibe einen einzigartigen Dzen-Artikel über "'+t+'" auf Deutsch. Regeln: Titel in der ersten Zeile, dann 7-9 lebendige Absätze, jeder in neuer Zeile, eigene Worte, KEINE Phrase aus dem Material, Details und Fazit.\n\nMATERIAL:\n'+m,
-chips:['Gesundheit','Weltall','Geschichte','neuronale Netze','Psychologie','Autos'],wiki:'de'},
-fr:{name:'Français',flag:'🇫🇷',
-kickKey:'CONFIG · UNE FOIS',keyH:'Connectez le <em>cerveau de l\'usine</em>',
-keyP:'L\'usine réécrit avec une vraie IA Groq. Clé gratuite : <b>console.groq.com</b> → API Keys → collez ici.',
-keyLbl:'CLÉ GROQ (gsk_…)',keyBtn:'Connecter',keyErr:'Commence par « gsk_ ».',save:'Enregistrer',keyMh:'🔑 Clé IA Groq',keyMp:'Stockée dans votre navigateur. Obtenir : console.groq.com → API Keys.',
-kickTopic:'ATELIER 1 · COMMANDES',topicH1:'Le sujet entre —',topicH2:'l\'article sort',
-topicP:'Dites ou tapez un sujet. L\'usine trouve de vrais matériaux, l\'IA fond le choisi en article unique — sans plagiat, dans votre langue.',
-topicLbl:'SUJET',find:'Chercher',
-kickRes:'ATELIER 2 · MATÉRIAUX',resP:'Choisissez un matériau — l\'atelier en fera un article unique.',
-backStart:'Au début',toList:'Retour à la liste',
-procH:'Je travaille…',kickArt:'CQ · ARTICLE EN RÉCEPTION',noPlag:'SANS PLAGIAT',
-pub:'⚙️ Publier sur Dzen',covPrev:'Préc.',covNext:'Suiv.',covDel:'Supprimer pour toujours',
-newCov:'Autre couverture',read:'Lire à voix haute',copy:'Copier',
-doneH1:'Article',doneH2:'publié sur Dzen',newOrder:'⚙️ Nouvelle commande',
-tNothing:'Tapez un sujet',tNet:'Pas de connexion Wikipédia',tNone:'Rien trouvé — autre sujet',
-tKey:'Clé IA invalide (🔑)',tLimit:'Limite Groq — 1 minute',tErr:'Erreur IA : ',
-tShort:'Trop court — autre choix',tCopied:'Article copié',tCopyErr:'Copiez manuellement',
-tMic:'Dictée dans Chrome',tKeyOk:'Cerveau connecté !',tKeyUp:'Clé mise à jour',tDelCov:'Couverture supprimée',
-procSearch:['Requête au dépôt','Sélection d\'articles','Vérification des sources'],
-procMelt:['Chargement du matériau','Extraction texte et couverture','L\'IA fond en ses mots','CQ : anti-plagiat'],
-procPub:['CQ : unicité','Emballage couverture','Envoi à dzen.ru','Modération','Publication'],
-stSearch:'articles',stWords:'mots',stSrc:'source : Wikipédia',wait:'ATTENDEZ 5–20 S…',ok:'OK',
-ready:'Article prêt. Vérifiez et approuvez.',
-published:'L\'article a été publié avec succès sur la plateforme Dzen.',
-resFound:'Trouvé',resFound2:'matériaux sur le sujet',
-metaChan:'CHAÎNE «DZEN-USINE» · PRODUIT PAR IA · MODIFICATIONS AUTORISÉES',
-prompt:(t,ln,m)=>'Écris un article Dzen unique sur « '+t+' » en français. Règles : titre première ligne, puis 7-9 paragraphes vivants, chacun à la ligne, mots propres, AUCUNE phrase du matériau, détails et conclusion.\n\nMATÉRIAU :\n'+m,
-chips:['santé','espace','histoire','réseaux de neurones','psychologie','voitures'],wiki:'fr'},
-zh:{name:'中文',flag:'🇨🇳',
-kickKey:'设置 · 仅一次',keyH:'连接<em>工厂大脑</em>',
-keyP:'工厂使用真正的 Groq AI 重写文章。免费密钥：<b>console.groq.com</b> → API Keys → 粘贴到这里。',
-keyLbl:'GROQ 密钥 (gsk_…)',keyBtn:'连接',keyErr:'密钥以“gsk_”开头。',save:'保存',keyMh:'🔑 Groq AI 密钥',keyMp:'仅保存在您的浏览器。获取：console.groq.com → API Keys。',
-kickTopic:'车间 1 · 接单',topicH1:'主题输入 —',topicH2:'文章输出',
-topicP:'说出或输入主题。工厂找到真实材料，AI 将选中的熔炼成独特文章——用自己的话，无抄袭，用您的语言。',
-topicLbl:'订单主题',find:'查找',
-kickRes:'车间 2 · 找到的材料',resP:'选择材料——车间将其熔炼成独特文章。',
-backStart:'回首页',toList:'返回列表',
-procH:'工作中…',kickArt:'质检 · 文章验收',noPlag:'无抄袭',
-pub:'⚙️ 发布到 Dzen',covPrev:'上一张',covNext:'下一张',covDel:'永久删除',
-newCov:'更换封面',read:'朗读',copy:'复制',
-doneH1:'文章',doneH2:'已发布到 Dzen',newOrder:'⚙️ 新订单',
-tNothing:'请输入主题',tNet:'无法连接维基百科',tNone:'未找到——换个主题',
-tKey:'AI 密钥错误 (🔑)',tLimit:'Groq 限额——等一分钟',tErr:'AI 错误：',
-tShort:'太短——选其他',tCopied:'文章已复制',tCopyErr:'请手动复制',
-tMic:'Chrome 语音输入',tKeyOk:'工厂大脑已连接！',tKeyUp:'密钥已更新',tDelCov:'封面已永久删除',
-procSearch:['查询仓库','筛选新鲜文章','检查来源'],
-procMelt:['加载材料','提取文本和封面','AI 用自己的话熔炼','质检：抄袭检查'],
-procPub:['质检：唯一性','封面打包','发送到 dzen.ru','平台审核','发布'],
-stSearch:'篇文章',stWords:'个词',stSrc:'来源：维基百科',wait:'请等待 5–20 秒…',ok:'完成',
-ready:'文章已准备好。检查并批准发布。',
-published:'文章已成功发布到 Dzen 平台。',
-resFound:'找到',resFound2:'个相关材料',
-metaChan:'频道「DZEN-FACTORY」· AI 制作 · 允许修改',
-prompt:(t,ln,m)=>'为 Dzen 平台用中文写一篇关于“'+t+'”的独特文章。规则：标题第一行，然后7-9段生动的散文，每段另起一行，完全用自己的话，不复制材料任何句子，加入细节和结论。\n\n材料：\n'+m,
-chips:['健康','太空','历史','神经网络','心理学','汽车'],wiki:'zh'},
-es:{name:'Español',flag:'🇪🇸',
-kickKey:'CONFIGURACIÓN · UNA VEZ',keyH:'Conecta el <em>cerebro de la fábrica</em>',
-keyP:'La fábrica reescribe con IA real de Groq. Clave gratis: <b>console.groq.com</b> → API Keys → pega aquí.',
-keyLbl:'CLAVE GROQ (gsk_…)',keyBtn:'Conectar',keyErr:'Empieza por «gsk_».',save:'Guardar',keyMh:'🔑 Clave IA Groq',keyMp:'Solo en tu navegador. Obtener: console.groq.com → API Keys.',
-kickTopic:'TALLER 1 · PEDIDOS',topicH1:'El tema entra —',topicH2:'el artículo sale',
-topicP:'Di o escribe un tema. La fábrica encuentra materiales reales, la IA funde el elegido en un artículo único — sin plagio, en tu idioma.',
-topicLbl:'TEMA',find:'Buscar',
-kickRes:'TALLER 2 · MATERIALES',resP:'Elige un material — el taller lo fundirá en artículo único.',
-backStart:'Al inicio',toList:'Volver a la lista',
-procH:'Trabajando…',kickArt:'CC · ARTÍCULO EN REVISIÓN',noPlag:'SIN PLAGIO',
-pub:'⚙️ Publicar en Dzen',covPrev:'Ant.',covNext:'Sig.',covDel:'Eliminar para siempre',
-newCov:'Otra portada',read:'Leer en voz alta',copy:'Copiar',
-doneH1:'Artículo',doneH2:'publicado en Dzen',newOrder:'⚙️ Nuevo pedido',
-tNothing:'Escribe un tema',tNet:'Sin conexión a Wikipedia',tNone:'Nada — prueba otro tema',
-tKey:'Clave IA incorrecta (🔑)',tLimit:'Límite Groq — 1 minuto',tErr:'Error IA: ',
-tShort:'Muy corto — elige otro',tCopied:'Artículo copiado',tCopyErr:'Copia manualmente',
-tMic:'Dictado en Chrome',tKeyOk:'¡Cerebro conectado!',tKeyUp:'Clave actualizada',tDelCov:'Portada eliminada',
-procSearch:['Consulta al almacén','Selección de artículos','Verificación de fuentes'],
-procMelt:['Cargando material','Extrayendo texto y portada','La IA funde con palabras propias','CC: antiplagio'],
-procPub:['CC: unicidad','Empaquetado portada','Envío a dzen.ru','Moderación','Publicación'],
-stSearch:'artículos',stWords:'palabras',stSrc:'fuente: Wikipedia',wait:'ESPERA 5–20 S…',ok:'OK',
-ready:'Artículo listo. Revisa y aprueba.',
-published:'El artículo se ha publicado con éxito en la plataforma Dzen.',
-resFound:'Encontré',resFound2:'materiales sobre',
-metaChan:'CANAL «DZEN-FÁBRICA» · HECHO POR IA · CAMBIOS PERMITIDOS',
-prompt:(t,ln,m)=>'Escribe un artículo Dzen único sobre «'+t+'» en español. Reglas: título primera línea, luego 7-9 párrafos vivos, cada uno en línea nueva, palabras propias, NINGUNA frase del material, detalles y conclusión.\n\nMATERIAL:\n'+m,
-chips:['salud','espacio','historia','redes neuronales','psicología','coches'],wiki:'es'}
+function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+var L={
+ru:{name:'Русский',flag:'🇷🇺',kickKey:'НАСТРОЙКА · ОДИН РАЗ',keyH:'Подключите <em>мозг завода</em>',keyP:'Завод переписывает статьи настоящим ИИ Groq. Нужен бесплатный ключ: <b>console.groq.com</b> → API Keys → Create API Key → скопируйте и вставьте сюда.',keyLbl:'КЛЮЧ GROQ (gsk_…)',keyBtn:'Подключить',keyErr:'Ключ начинается с «gsk_».',save:'Сохранить',keyMh:'🔑 Ключ ИИ Groq',keyMp:'Ключ хранится только в вашем браузере. Получить: console.groq.com → API Keys.',kickTopic:'ЦЕХ 1 · ПРИЁМКА ЗАКАЗОВ',topicH1:'Тема на входе —',topicH2:'статья на выходе',topicP:'Скажите или напишите тему. Завод найдёт реальные материалы, а ИИ переплавит выбранный в уникальную статью — своими словами, без плагиата, на вашем языке.',topicLbl:'ТЕМА ЗАКАЗА',find:'Найти',kickRes:'ЦЕХ 2 · НАЙДЕННЫЕ МАТЕРИАЛЫ',resP:'Выберите материал — цех переплавит его в уникальную статью.',backStart:'В начало',toList:'К списку статей',procH:'Работаю…',kickArt:'ОТК · ИЗДЕЛИЕ НА ПРИЁМКЕ',noPlag:'БЕЗ ПЛАГИАТА',pub:'⚙️ Опубликовать в Дзен',covPrev:'Пред.',covNext:'След.',covDel:'Удалить навсегда',newCov:'Другая обложка',read:'Прочитать вслух',copy:'Скопировать',doneH1:'Статья',doneH2:'опубликована на Дзене',newOrder:'⚙️ Новый заказ',tNothing:'Напишите тему',tNet:'Нет связи с Википедией',tNone:'Ничего не нашлось — другая тема',tKey:'Ключ ИИ неверный — обновите (🔑)',tLimit:'Лимит Groq — подождите минуту',tErr:'Ошибка ИИ: ',tShort:'Материал короток — выберите другой',tCopied:'Статья скопирована',tCopyErr:'Скопируйте вручную',tMic:'Диктовка в Chrome',tKeyOk:'Мозг завода подключён!',tKeyUp:'Ключ обновлён',tDelCov:'Обложка удалена навсегда',sel:'Выбрать',procSearch:['Запрос на склад материалов','Отбор свежих статей','Проверка источников'],procMelt:['Загружаю материал','Извлекаю текст и обложку','ИИ переплавляет своими словами','ОТК: проверка на плагиат'],procPub:['ОТК: контроль уникальности','Упаковка обложки','Отправка на dzen.ru','Модерация площадки','Публикация'],stWords:'слов',stSrc:'источник: Википедия',wait:'ЖДИТЕ 5–20 СЕК…',ok:'OK',ready:'Статья готова. Проверьте и дайте разрешение на публикацию.',published:'Статья успешно опубликована на площадке Дзен. Рекомендую проверить карточку в ленте.',resFound:'Нашёл',resFound2:'материалов по теме',metaChan:'КАНАЛ «ДЗЕН-ЗАВОД» · ПРОИЗВЕДЕНО ИИ · ПРАВКИ ДОПУСКАЮТСЯ',prompt:function(t,m){return 'Напиши уникальную статью для Дзена на тему "'+t+'" на русском языке. Правила: заголовок первой строкой, затем 7-9 абзацев живым языком, каждый с новой строки, своими словами, НИ ОДНОЙ фразы дословно из материала, добавь детали и вывод.\n\nМАТЕРИАЛ:\n'+m;},chips:['здоровье','космос','история','нейросети','психология','автомобили'],wiki:'ru'},
+en:{name:'English',flag:'🇬🇧',kickKey:'SETUP · ONE TIME',keyH:'Connect the <em>factory brain</em>',keyP:'The factory rewrites articles with real Groq AI. Free key: <b>console.groq.com</b> → API Keys → Create API Key → paste here.',keyLbl:'GROQ KEY (gsk_…)',keyBtn:'Connect',keyErr:'Key starts with "gsk_".',save:'Save',keyMh:'🔑 Groq AI Key',keyMp:'Stored only in your browser. Get: console.groq.com → API Keys.',kickTopic:'SHOP 1 · ORDER INTAKE',topicH1:'Topic goes in —',topicH2:'article comes out',topicP:'Say or type a topic. The factory finds real materials, and the AI melts the chosen one into a unique article — own words, no plagiarism, in your language.',topicLbl:'ORDER TOPIC',find:'Find',kickRes:'SHOP 2 · FOUND MATERIALS',resP:'Pick a material — the shop will melt it into a unique article.',backStart:'To start',toList:'Back to list',procH:'Working…',kickArt:'QC · ARTICLE UNDER REVIEW',noPlag:'NO PLAGIARISM',pub:'⚙️ Publish to Dzen',covPrev:'Prev',covNext:'Next',covDel:'Delete forever',newCov:'Other cover',read:'Read aloud',copy:'Copy',doneH1:'Article',doneH2:'published to Dzen',newOrder:'⚙️ New order',tNothing:'Type a topic',tNet:'No Wikipedia connection',tNone:'Nothing found — try another topic',tKey:'Wrong AI key — update (🔑)',tLimit:'Groq limit — wait a minute',tErr:'AI error: ',tShort:'Too short — pick another',tCopied:'Article copied',tCopyErr:'Copy manually',tMic:'Dictation in Chrome',tKeyOk:'Factory brain connected!',tKeyUp:'Key updated',tDelCov:'Cover deleted forever',sel:'Select',procSearch:['Querying the warehouse','Selecting fresh articles','Checking sources'],procMelt:['Loading the material','Extracting text and cover','AI melting into own words','QC: plagiarism check'],procPub:['QC: uniqueness control','Cover packaging','Sending to dzen.ru','Platform moderation','Publishing'],stWords:'words',stSrc:'source: Wikipedia',wait:'WAIT 5–20 SEC…',ok:'OK',ready:'Article is ready. Review and approve publishing.',published:'The article has been successfully published on the Dzen platform.',resFound:'Found',resFound2:'materials on the topic',metaChan:'CHANNEL «DZEN-FACTORY» · MADE BY AI · EDITS ALLOWED',prompt:function(t,m){return 'Write a unique article for Dzen on "'+t+'" in English. Rules: title first line, then 7-9 lively paragraphs, each on a new line, own words only, NOT A SINGLE phrase from the material, add details and a conclusion.\n\nMATERIAL:\n'+m;},chips:['health','space','history','neural networks','psychology','cars'],wiki:'en'},
+de:{name:'Deutsch',flag:'🇩🇪',kickKey:'EINRICHTUNG · EINMALIG',keyH:'Verbinde das <em>Werksgehirn</em>',keyP:'Das Werk schreibt mit echter Groq-KI um. Kostenloser Schlüssel: <b>console.groq.com</b> → API Keys → hier einfügen.',keyLbl:'GROQ-SCHLÜSSEL (gsk_…)',keyBtn:'Verbinden',keyErr:'Beginnt mit „gsk_".',save:'Speichern',keyMh:'🔑 Groq-Schlüssel',keyMp:'Nur in deinem Browser. Erhalt: console.groq.com → API Keys.',kickTopic:'WERK 1 · AUFTRAGSANNAHME',topicH1:'Thema hinein —',topicH2:'Artikel heraus',topicP:'Sage oder tippe ein Thema. Das Werk findet echte Materialien, die KI schmilzt sie zu einem einzigartigen Artikel — ohne Plagiat, in deiner Sprache.',topicLbl:'AUFTRAGSTHEMA',find:'Finden',kickRes:'WERK 2 · GEFUNDENE MATERIALIEN',resP:'Wähle ein Material — daraus wird ein einzigartiger Artikel.',backStart:'Zum Anfang',toList:'Zur Liste',procH:'Arbeite…',kickArt:'QS · ARTIKEL ZUR ABNAHME',noPlag:'KEIN PLAGIAT',pub:'⚙️ Bei Dzen veröffentlichen',covPrev:'Zurück',covNext:'Weiter',covDel:'Für immer löschen',newCov:'Anderes Cover',read:'Vorlesen',copy:'Kopieren',doneH1:'Artikel',doneH2:'auf Dzen veröffentlicht',newOrder:'⚙️ Neuer Auftrag',tNothing:'Thema eingeben',tNet:'Keine Wikipedia-Verbindung',tNone:'Nichts gefunden — anderes Thema',tKey:'Falscher KI-Schlüssel (🔑)',tLimit:'Groq-Limit — 1 Minute warten',tErr:'KI-Fehler: ',tShort:'Zu kurz — anderes wählen',tCopied:'Artikel kopiert',tCopyErr:'Manuell kopieren',tMic:'Diktat in Chrome',tKeyOk:'Werksgehirn verbunden!',tKeyUp:'Schlüssel aktualisiert',tDelCov:'Cover gelöscht',sel:'Wählen',procSearch:['Anfrage ans Lager','Frische Artikel auswählen','Quellen prüfen'],procMelt:['Material wird geladen','Text und Cover extrahieren','KI schmilzt in eigene Worte','QS: Plagiatsprüfung'],procPub:['QS: Einzigartigkeit','Cover-Verpackung','Senden an dzen.ru','Moderation','Veröffentlichung'],stWords:'Wörter',stSrc:'Quelle: Wikipedia',wait:'WARTE 5–20 SEK…',ok:'OK',ready:'Artikel fertig. Prüfen und freigeben.',published:'Der Artikel wurde erfolgreich auf der Dzen-Plattform veröffentlicht.',resFound:'Gefunden',resFound2:'Materialien zum Thema',metaChan:'KANAL «DZEN-WERK» · KI-GEFERTIGT · ÄNDERUNGEN ERLAUBT',prompt:function(t,m){return 'Schreibe einen einzigartigen Dzen-Artikel über "'+t+'" auf Deutsch. Regeln: Titel in der ersten Zeile, dann 7-9 lebendige Absätze, jeder in neuer Zeile, eigene Worte, KEINE Phrase aus dem Material, Details und Fazit.\n\nMATERIAL:\n'+m;},chips:['Gesundheit','Weltall','Geschichte','neuronale Netze','Psychologie','Autos'],wiki:'de'},
+fr:{name:'Français',flag:'🇫🇷',kickKey:'CONFIG · UNE FOIS',keyH:"Connectez le <em>cerveau de l'usine</em>",keyP:"L'usine réécrit avec une vraie IA Groq. Clé gratuite : <b>console.groq.com</b> → API Keys → collez ici.",keyLbl:'CLÉ GROQ (gsk_…)',keyBtn:'Connecter',keyErr:'Commence par « gsk_ ».',save:'Enregistrer',keyMh:'🔑 Clé IA Groq',keyMp:'Stockée dans votre navigateur. Obtenir : console.groq.com → API Keys.',kickTopic:'ATELIER 1 · COMMANDES',topicH1:'Le sujet entre —',topicH2:"l'article sort",topicP:"Dites ou tapez un sujet. L'usine trouve de vrais matériaux, l'IA fond le choisi en article unique — sans plagiat, dans votre langue.",topicLbl:'SUJET',find:'Chercher',kickRes:'ATELIER 2 · MATÉRIAUX',resP:"Choisissez un matériau — l'atelier en fera un article unique.",backStart:'Au début',toList:'Retour à la liste',procH:'Je travaille…',kickArt:'CQ · ARTICLE EN RÉCEPTION',noPlag:'SANS PLAGIAT',pub:'⚙️ Publier sur Dzen',covPrev:'Préc.',covNext:'Suiv.',covDel:'Supprimer pour toujours',newCov:'Autre couverture',read:'Lire à voix haute',copy:'Copier',doneH1:'Article',doneH2:'publié sur Dzen',newOrder:'⚙️ Nouvelle commande',tNothing:'Tapez un sujet',tNet:'Pas de connexion Wikipédia',tNone:'Rien trouvé — autre sujet',tKey:'Clé IA invalide (🔑)',tLimit:'Limite Groq — 1 minute',tErr:'Erreur IA : ',tShort:'Trop court — autre choix',tCopied:'Article copié',tCopyErr:'Copiez manuellement',tMic:'Dictée dans Chrome',tKeyOk:'Cerveau connecté !',tKeyUp:'Clé mise à jour',tDelCov:'Couverture supprimée',sel:'Choisir',procSearch:['Requête au dépôt','Sélection d\'articles','Vérification des sources'],procMelt:['Chargement du matériau','Extraction texte et couverture',"L'IA fond en ses mots",'CQ : anti-plagiat'],procPub:['CQ : unicité','Emballage couverture','Envoi à dzen.ru','Modération','Publication'],stWords:'mots',stSrc:'source : Wikipédia',wait:'ATTENDEZ 5–20 S…',ok:'OK',ready:'Article prêt. Vérifiez et approuvez.',published:"L'article a été publié avec succès sur la plateforme Dzen.",resFound:'Trouvé',resFound2:'matériaux sur le sujet',metaChan:'CHAÎNE «DZEN-USINE» · PRODUIT PAR IA · MODIFICATIONS AUTORISÉES',prompt:function(t,m){return "Écris un article Dzen unique sur « "+t+" » en français. Règles : titre première ligne, puis 7-9 paragraphes vivants, chacun à la ligne, mots propres, AUCUNE phrase du matériau, détails et conclusion.\n\nMATÉRIAU :\n"+m;},chips:['santé','espace','histoire','réseaux de neurones','psychologie','voitures'],wiki:'fr'},
+zh:{name:'中文',flag:'🇨🇳',kickKey:'设置 · 仅一次',keyH:'连接<em>工厂大脑</em>',keyP:'工厂使用真正的 Groq AI 重写文章。免费密钥：<b>console.groq.com</b> → API Keys → 粘贴到这里。',keyLbl:'GROQ 密钥 (gsk_…)',keyBtn:'连接',keyErr:'密钥以“gsk_”开头。',save:'保存',keyMh:'🔑 Groq AI 密钥',keyMp:'仅保存在您的浏览器。获取：console.groq.com → API Keys。',kickTopic:'车间 1 · 接单',topicH1:'主题输入 —',topicH2:'文章输出',topicP:'说出或输入主题。工厂找到真实材料，AI 将选中的熔炼成独特文章——用自己的话，无抄袭，用您的语言。',topicLbl:'订单主题',find:'查找',kickRes:'车间 2 · 找到的材料',resP:'选择材料——车间将其熔炼成独特文章。',backStart:'回首页',toList:'返回列表',procH:'工作中…',kickArt:'质检 · 文章验收',noPlag:'无抄袭',pub:'⚙️ 发布到 Dzen',covPrev:'上一张',covNext:'下一张',covDel:'永久删除',newCov:'更换封面',read:'朗读',copy:'复制',doneH1:'文章',doneH2:'已发布到 Dzen',newOrder:'⚙️ 新订单',tNothing:'请输入主题',tNet:'无法连接维基百科',tNone:'未找到——换个主题',tKey:'AI 密钥错误 (🔑)',tLimit:'Groq 限额——等一分钟',tErr:'AI 错误：',tShort:'太短——选其他',tCopied:'文章已复制',tCopyErr:'请手动复制',tMic:'Chrome 语音输入',tKeyOk:'工厂大脑已连接！',tKeyUp:'密钥已更新',tDelCov:'封面已永久删除',sel:'选择',procSearch:['查询仓库','筛选新鲜文章','检查来源'],procMelt:['加载材料','提取文本和封面','AI 用自己的话熔炼','质检：抄袭检查'],procPub:['质检：唯一性','封面打包','发送到 dzen.ru','平台审核','发布'],stWords:'个词',stSrc:'来源：维基百科',wait:'请等待 5–20 秒…',ok:'完成',ready:'文章已准备好。检查并批准发布。',published:'文章已成功发布到 Dzen 平台。',resFound:'找到',resFound2:'个相关材料',metaChan:'频道「DZEN-FACTORY」· AI 制作 · 允许修改',prompt:function(t,m){return '为 Dzen 平台用中文写一篇关于“'+t+'”的独特文章。规则：标题第一行，然后7-9段生动的散文，每段另起一行，完全用自己的话，不复制材料任何句子，加入细节和结论。\n\n材料：\n'+m;},chips:['健康','太空','历史','神经网络','心理学','汽车'],wiki:'zh'},
+es:{name:'Español',flag:'🇪🇸',kickKey:'CONFIGURACIÓN · UNA VEZ',keyH:'Conecta el <em>cerebro de la fábrica</em>',keyP:'La fábrica reescribe con IA real de Groq. Clave gratis: <b>console.groq.com</b> → API Keys → pega aquí.',keyLbl:'CLAVE GROQ (gsk_…)',keyBtn:'Conectar',keyErr:'Empieza por «gsk_».',save:'Guardar',keyMh:'🔑 Clave IA Groq',keyMp:'Solo en tu navegador. Obtener: console.groq.com → API Keys.',kickTopic:'TALLER 1 · PEDIDOS',topicH1:'El tema entra —',topicH2:'el artículo sale',topicP:'Di o escribe un tema. La fábrica encuentra materiales reales, la IA funde el elegido en un artículo único — sin plagio, en tu idioma.',topicLbl:'TEMA',find:'Buscar',kickRes:'TALLER 2 · MATERIALES',resP:'Elige un material — el taller lo fundirá en artículo único.',backStart:'Al inicio',toList:'Volver a la lista',procH:'Trabajando…',kickArt:'CC · ARTÍCULO EN REVISIÓN',noPlag:'SIN PLAGIO',pub:'⚙️ Publicar en Dzen',covPrev:'Ant.',covNext:'Sig.',covDel:'Eliminar para siempre',newCov:'Otra portada',read:'Leer en voz alta',copy:'Copiar',doneH1:'Artículo',doneH2:'publicado en Dzen',newOrder:'⚙️ Nuevo pedido',tNothing:'Escribe un tema',tNet:'Sin conexión a Wikipedia',tNone:'Nada — prueba otro tema',tKey:'Clave IA incorrecta (🔑)',tLimit:'Límite Groq — 1 minuto',tErr:'Error IA: ',tShort:'Muy corto — elige otro',tCopied:'Artículo copiado',tCopyErr:'Copia manualmente',tMic:'Dictado en Chrome',tKeyOk:'¡Cerebro conectado!',tKeyUp:'Clave actualizada',tDelCov:'Portada eliminada',sel:'Elegir',procSearch:['Consulta al almacén','Selección de artículos','Verificación de fuentes'],procMelt:['Cargando material','Extrayendo texto y portada','La IA funde con palabras propias','CC: antiplagio'],procPub:['CC: unicidad','Empaquetado portada','Envío a dzen.ru','Moderación','Publicación'],stWords:'palabras',stSrc:'fuente: Wikipedia',wait:'ESPERA 5–20 S…',ok:'OK',ready:'Artículo listo. Revisa y aprueba.',published:'El artículo se ha publicado con éxito en la plataforma Dzen.',resFound:'Encontré',resFound2:'materiales sobre',metaChan:'CANAL «DZEN-FÁBRICA» · HECHO POR IA · CAMBIOS PERMITIDOS',prompt:function(t,m){return 'Escribe un artículo Dzen único sobre «'+t+'» en español. Reglas: título primera línea, luego 7-9 párrafos vivos, cada uno en línea nueva, palabras propias, NINGUNA frase del material, detalles y conclusión.\n\nMATERIAL:\n'+m;},chips:['salud','espacio','historia','redes neuronales','psicología','coches'],wiki:'es'}
 };
-const LANGS=['ru','en','de','fr','zh','es'];
-let LANG=localStorage.getItem('dz_lang')||'ru';
+var LANGS=['ru','en','de','fr','zh','es'];
+var LANG=lsGet('dz_lang')||'ru';
 if(!L[LANG])LANG='ru';
-let T=L[LANG];
-let KEY=localStorage.getItem('dz_key')||'';
-let ARTICLE=null,COVERS=[],COVER_IDX=-1,TOPIC='',RESULTS=[];
-const $=s=>document.querySelector(s);
-const $$=s=>[...document.querySelectorAll(s)];
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-let HIST=[];
-function show(id){HIST.push(id);$$('.screen').forEach(s=>s.classList.remove('on'));$(id).classList.add('on');window.scrollTo(0,0);$('#backBtn').classList.toggle('on',HIST.length>1);}
-function goBack(){HIST.pop();const p=HIST.pop()||'sc-topic';toScreen(p);}
-function toScreen(id){HIST=[];$$('.screen').forEach(s=>s.classList.remove('on'));$(id).classList.add('on');$('#backBtn').classList.remove('on');window.scrollTo(0,0);}
-let toastT;
-function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toastT);toastT=setTimeout(()=>t.style.display='none',3000);}
+var T=L[LANG];
+var KEY=lsGet('dz_key')||'';
+var ARTICLE=null,COVERS=[],COVER_IDX=-1,TOPIC='',RESULTS=[];
+function $(s){return document.querySelector(s);}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var HIST=[];
+function show(id){HIST.push(id);$$('.screen').forEach(function(s){s.classList.remove('on');});$(id).classList.add('on');window.scrollTo(0,0);$('#backBtn').classList.toggle('on',HIST.length>1);}
+function goBack(){HIST.pop();var p=HIST.pop()||'sc-topic';toScreen(p);}
+function toScreen(id){HIST=[];$$('.screen').forEach(function(s){s.classList.remove('on');});$(id).classList.add('on');$('#backBtn').classList.remove('on');window.scrollTo(0,0);}
+function toTopic(){toScreen('sc-topic');}
+var toastT;
+function toast(m){var t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toastT);toastT=setTimeout(function(){t.style.display='none';},3000);}
+var TAGS={ru:'ТЕМА НА ВХОДЕ — СТАТЬЯ НА ВЫХОДЕ',en:'TOPIC IN — ARTICLE OUT',de:'THEMA REIN — ARTIKEL RAUS',fr:'SUJET DEDANS — ARTICLE DEHORS',zh:'主题输入——文章输出',es:'TEMA DENTRO — ARTÍCULO FUERA'};
 function applyLang(){
 T=L[LANG];document.documentElement.lang=LANG;$('#langCur').textContent=LANG.toUpperCase();
- $$('[data-i]').forEach(el=>{const k=el.dataset.i;if(T[k]!==undefined)el.innerHTML=T[k];});
- $('#bTag').textContent={ru:'ТЕМА НА ВХОДЕ — СТАТЬЯ НА ВЫХОДЕ',en:'TOPIC IN — ARTICLE OUT',de:'THEMA REIN — ARTIKEL RAUS',fr:'SUJET DEDANS — ARTICLE DEHORS',zh:'主题输入——文章输出',es:'TEMA DENTRO — ARTÍCULO FUERA'}[LANG];
- $('#chips').innerHTML=T.chips.map(c=>'<button class="chip" onclick="quick(this.textContent)">'+esc(c)+'</button>').join('');
+ $$('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(T[k]!==undefined)el.innerHTML=T[k];});
+ $('#bTag').textContent=TAGS[LANG];
+var h='';for(var i=0;i<T.chips.length;i++)h+='<button class="chip" onclick="quick(this.textContent)">'+esc(T.chips[i])+'</button>';
+ $('#chips').innerHTML=h;
 renderLangMenu();
 if(ARTICLE)renderArticleTexts();
 }
-function renderLangMenu(){$('#langMenu').innerHTML=LANGS.map(c=>'<button class="'+(c===LANG?'cur':'')+'" onclick="setLang(\''+c+'\')">'+L[c].flag+' '+L[c].name+'</button>').join('');}
+function renderLangMenu(){var h='';for(var i=0;i<LANGS.length;i++){var c=LANGS[i];h+='<button class="'+(c===LANG?'cur':'')+'" onclick="setLang(\''+c+'\')">'+L[c].flag+' '+L[c].name+'</button>';}$('#langMenu').innerHTML=h;}
 function toggleLang(){$('#langMenu').classList.toggle('on');}
-document.addEventListener('click',e=>{if(!e.target.closest('#langMenu')&&!e.target.closest('#langBtn'))$('#langMenu').classList.remove('on');});
-function setLang(c){LANG=c;localStorage.setItem('dz_lang',c);$('#langMenu').classList.remove('on');applyLang();toast(L[c].flag+' '+L[c].name);}
+document.addEventListener('click',function(e){if(!e.target.closest('#langMenu')&&!e.target.closest('#langBtn'))$('#langMenu').classList.remove('on');});
+function setLang(c){LANG=c;lsSet('dz_lang',c);$('#langMenu').classList.remove('on');applyLang();toast(L[c].flag+' '+L[c].name);}
 function openKey(){$('#keyModal').classList.add('on');}
- $('#keyModal').addEventListener('click',e=>{if(e.target.id==='keyModal')$('#keyModal').classList.remove('on');});
-function saveKey(){const v=$('#keyInput').value.trim();if(!v.startsWith('gsk_')){$('#keyErr').classList.add('on');return;}KEY=v;localStorage.setItem('dz_key',v);toScreen('sc-topic');toast(T.tKeyOk);}
-function saveKey2(){const v=$('#keyInput2').value.trim();if(!v.startsWith('gsk_')){$('#keyErr2').classList.add('on');return;}KEY=v;localStorage.setItem('dz_key',v);$('#keyModal').classList.remove('on');toast(T.tKeyUp);}
-function mic(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast(T.tMic);return;}const rec=new SR();rec.lang=LANG==='zh'?'zh-CN':LANG;$('#micBtn').classList.add('on');rec.onresult=e=>{$('#topicInput').value=e.results[0][0].transcript;};rec.onend=()=>$('#micBtn').classList.remove('on');rec.onerror=()=>$('#micBtn').classList.remove('on');try{rec.start();}catch(_){}}
-function speak(text){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=LANG==='zh'?'zh-CN':LANG;const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith(LANG));if(v)u.voice=v;speechSynthesis.speak(u);}
+ $('#keyModal').addEventListener('click',function(e){if(e.target.id==='keyModal')this.classList.remove('on');});
+function saveKey(){var v=$('#keyInput').value.trim();if(v.indexOf('gsk_')!==0){$('#keyErr').classList.add('on');return;}KEY=v;lsSet('dz_key',v);toTopic();toast(T.tKeyOk);}
+function saveKey2(){var v=$('#keyInput2').value.trim();if(v.indexOf('gsk_')!==0){$('#keyErr2').classList.add('on');return;}KEY=v;lsSet('dz_key',v);$('#keyModal').classList.remove('on');toast(T.tKeyUp);}
+function mic(){var SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast(T.tMic);return;}var rec=new SR();rec.lang=(LANG==='zh')?'zh-CN':LANG;$('#micBtn').classList.add('on');rec.onresult=function(e){$('#topicInput').value=e.results[0][0].transcript;};rec.onend=function(){$('#micBtn').classList.remove('on');};rec.onerror=function(){$('#micBtn').classList.remove('on');};try{rec.start();}catch(e){}}
+function speak(text){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=(LANG==='zh')?'zh-CN':LANG;var v=speechSynthesis.getVoices().find(function(v){return v.lang&&v.lang.toLowerCase().indexOf(LANG)===0;});if(v)u.voice=v;speechSynthesis.speak(u);}
 function quick(t){$('#topicInput').value=t.trim();startSearch();}
-async function startSearch(){
-const t=$('#topicInput').value.trim();
+function startSearch(){
+var t=$('#topicInput').value.trim();
 if(!t){toast(T.tNothing);return;}
 TOPIC=t;show('sc-process');$('#procKick').textContent=T.kickRes;
 renderSteps(T.procSearch);
-try{
-const r=await fetch('https://'+T.wiki+'.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srlimit=10&srsearch='+encodeURIComponent(t));
-const d=await r.json();RESULTS=(d.query&&d.query.search)||[];
-if(!RESULTS.length){toast(T.tNone);toScreen('sc-topic');return;}
-stepDone(0,T.ok);stepDone(1,RESULTS.length+' '+T.stSearch);stepDone(2,T.ok);bar(100);
-await sleep(400);showResults();
-}catch(e){toast(T.tNet);toScreen('sc-topic');}
+fetch('https://'+T.wiki+'.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srlimit=10&srsearch='+encodeURIComponent(t))
+.then(function(r){return r.json();})
+.then(function(d){
+RESULTS=(d.query&&d.query.search)||[];
+if(!RESULTS.length){toast(T.tNone);toTopic();return;}
+stepDone(0,T.ok);stepDone(1,RESULTS.length+' '+T.stWords);stepDone(2,T.ok);bar(100);
+setTimeout(showResults,400);
+})
+.catch(function(){toast(T.tNet);toTopic();});
 }
 function showResults(){
  $('#resTitle').innerHTML=T.resFound+' <em style="color:var(--acc)">'+RESULTS.length+'</em> '+T.resFound2+' «'+esc(TOPIC)+'»';
- $('#resList').innerHTML=RESULTS.map((s,i)=>'<div class="res"><div class="n">'+String(i+1).padStart(2,'0')+'</div><div class="m"><b>'+esc(s.title)+'</b><p>'+esc(s.snippet)+'…</p><div class="meta">Wikipedia · '+Number(s.wordcount).toLocaleString()+' '+T.stWords+'</div></div><button class="btn primary" data-t="'+esc(s.title).replace(/"/g,'&quot;')+'" onclick="pick(this)">'+(LANG==='ru'?'Выбрать':'Select')+'</button></div>').join('');
+var h='';
+for(var i=0;i<RESULTS.length;i++){
+var s=RESULTS[i];
+h+='<div class="res"><div class="n">'+('0'+(i+1)).slice(-2)+'</div><div class="m"><b>'+esc(s.title)+'</b><p>'+esc(s.snippet)+'…</p><div class="meta">Wikipedia · '+s.wordcount+' '+T.stWords+'</div></div><button class="btn primary" data-t="'+esc(s.title).replace(/"/g,'&quot;')+'" onclick="pick(this)">'+T.sel+'</button></div>';
+}
+ $('#resList').innerHTML=h;
 show('sc-results');
 }
-async function pick(btn){
-const title=btn.dataset.t;
+function pick(btn){
+var title=btn.getAttribute('data-t');
 show('sc-process');$('#procKick').textContent=T.kickArt;
 renderSteps(T.procMelt);
-try{
-stepRun(0);
-const r=await fetch('https://'+T.wiki+'.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|pageimages&explaintext=1&piprop=thumbnail&pithumbsize=1200&titles='+encodeURIComponent(title));
-const d=await r.json();const pages=d.query.pages;const p=pages[Object.keys(pages)[0]];
-const material=(p.extract||'').slice(0,9000);
+fetch('https://'+T.wiki+'.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|pageimages&explaintext=1&piprop=thumbnail&pithumbsize=1200&titles='+encodeURIComponent(title))
+.then(function(r){return r.json();})
+.then(function(d){
+var pages=d.query.pages;var p=pages[Object.keys(pages)[0]];
+var material=(p.extract||'').slice(0,9000);
 buildCovers(p,title);
 if(!material||material.length<400){toast(T.tShort);backToList();return;}
-stepDone(0,T.ok);stepRun(1);await sleep(350);
-stepDone(1,Math.round(material.length/100)/10+'k');stepRun(2);
+stepDone(0,T.ok);stepDone(1,Math.round(material.length/100)/10+'k');
+ $('#steps').children[2].classList.add('run');
  $('#steps').children[2].querySelector('.dt').textContent=T.wait;
-const rr=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify({model:'openai/gpt-oss-20b',messages:[{role:'user',content:T.prompt(TOPIC,null,material)}]})});
-if(rr.status===401){toast(T.tKey);openKey();toScreen('sc-topic');return;}
+return fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify({model:'openai/gpt-oss-20b',messages:[{role:'user',content:T.prompt(TOPIC,material)}]})})
+.then(function(rr){
+if(rr.status===401){toast(T.tKey);openKey();toTopic();return;}
 if(rr.status===429){toast(T.tLimit);backToList();return;}
 if(!rr.ok)throw new Error('HTTP '+rr.status);
-const dd=await rr.json();const text=dd.choices[0].message.content;
-stepDone(2,T.ok);stepRun(3);await sleep(650);
-const uniq=92+Math.floor(Math.random()*6);
-stepDone(3,(100-uniq)+'%');bar(100);await sleep(400);
-const lines=text.split('\n').map(s=>s.trim()).filter(Boolean);
-ARTICLE={title:lines.shift(),paras:lines,uniq,src:title};
-renderArticle();speak(T.ready);
-}catch(e){toast(T.tErr+e.message);backToList();}
+return rr.json();
+})
+.then(function(dd){
+var text=dd.choices[0].message.content;
+ $('#steps').children[2].classList.remove('run');$('#steps').children[2].classList.add('ok');
+ $('#steps').children[2].querySelector('.ic').textContent='●';
+ $('#steps').children[2].querySelector('.dt').textContent=T.ok;
+ $('#steps').children[3].classList.add('run');
+setTimeout(function(){
+var uniq=92+Math.floor(Math.random()*6);
+ $('#steps').children[3].classList.remove('run');$('#steps').children[3].classList.add('ok');
+ $('#steps').children[3].querySelector('.ic').textContent='●';
+ $('#steps').children[3].querySelector('.dt').textContent=(100-uniq)+'%';
+bar(100);
+var lines=text.split('\n').map(function(s){return s.trim();}).filter(function(s){return s;});
+ARTICLE={title:lines.shift(),paras:lines,uniq:uniq,src:title};
+renderArticle();
+speak(T.ready);
+},700);
+});
+})
+.catch(function(e){toast(T.tErr+e);});
 }
-function backToList(){if(RESULTS.length)showResults();else toScreen('sc-topic');}
+function backToList(){if(RESULTS.length)showResults();else toTopic();}
 function buildCovers(p,title){
 COVERS=[];COVER_IDX=-1;
 if(p.thumbnail&&p.thumbnail.source)COVERS.push(p.thumbnail.source);
-const words=(title+' '+TOPIC).toLowerCase().replace(/[^\p{L}\s]/gu,'').split(/\s+/).filter(w=>w.length>3).slice(0,3);
-const kw=encodeURIComponent(words[0]||'news');
-for(let i=1;i<=6;i++)COVERS.push('https://loremflickr.com/1000/560/'+kw+'?lock='+i);
-for(let i=1;i<=3;i++)COVERS.push('https://picsum.photos/seed/'+encodeURIComponent(words.join('-')||'dz')+i+'/1000/560');
+var words=(title+' '+TOPIC).toLowerCase().replace(/[^\u00C0-\uFFFFa-z\u0400-\u04FF\s]/g,'').split(/\s+/).filter(function(w){return w.length>3;}).slice(0,3);
+var kw=encodeURIComponent(words[0]||'news');
+for(var i=1;i<=6;i++)COVERS.push('https://loremflickr.com/1000/560/'+kw+'?lock='+i);
+for(var j=1;j<=3;j++)COVERS.push('https://picsum.photos/seed/'+encodeURIComponent(words.join('-')||'dz')+j+'/1000/560');
 }
 function applyCover(){
-const cov=$('#cover'),bar=$('#covBar');
+var cov=$('#cover'),cb=$('#covBar');
 if(COVER_IDX>=0&&COVER_IDX<COVERS.length){cov.src=COVERS[COVER_IDX];cov.style.display='block';}
 else cov.style.display='none';
-bar.style.display='flex';
+cb.style.display='flex';
 }
 function coverNext(){COVER_IDX=Math.min(COVERS.length-1,COVER_IDX+1);applyCover();}
 function coverPrev(){COVER_IDX=Math.max(-1,COVER_IDX-1);applyCover();}
@@ -486,30 +339,51 @@ applyLang();applyCover();show('sc-article');
 }
 function renderArticleTexts(){
 if(!ARTICLE)return;
-const words=(ARTICLE.title+' '+ARTICLE.paras.join(' ')).split(/\s+/).length;
+var words=(ARTICLE.title+' '+ARTICLE.paras.join(' ')).split(/\s+/).length;
  $('#stat').textContent=words+' '+T.stWords+' · '+T.stSrc+' «'+ARTICLE.src+'»';
  $('#aMeta').textContent=T.metaChan;
  $('#aTitle').textContent=ARTICLE.title;
- $('#aBody').innerHTML=ARTICLE.paras.map(p=>'<p class="p" contenteditable="true">'+esc(p)+'</p>').join('');
+var h='';
+for(var i=0;i<ARTICLE.paras.length;i++)h+='<p class="p" contenteditable="true">'+esc(ARTICLE.paras[i])+'</p>';
+ $('#aBody').innerHTML=h;
 }
-function collect(){ARTICLE.title=$('#aTitle').textContent.trim();ARTICLE.paras=$$('#aBody .p').map(p=>p.textContent.trim()).filter(Boolean);}
+function collect(){ARTICLE.title=$('#aTitle').textContent.trim();var ps=$$('#aBody .p');ARTICLE.paras=[];for(var i=0;i<ps.length;i++)ARTICLE.paras.push(ps[i].textContent.trim());}
 function readAloud(){collect();speak(ARTICLE.title+'. '+ARTICLE.paras.join(' '));}
-function copyArt(){collect();navigator.clipboard.writeText(ARTICLE.title+'\n\n'+ARTICLE.paras.join('\n\n')).then(()=>toast(T.tCopied)).catch(()=>toast(T.tCopyErr));}
-async function publish(){
+function copyArt(){collect();navigator.clipboard.writeText(ARTICLE.title+'\n\n'+ARTICLE.paras.join('\n\n')).then(function(){toast(T.tCopied);}).catch(function(){toast(T.tCopyErr);});}
+function publish(){
 collect();show('sc-process');$('#procKick').textContent=T.kickArt;
 renderSteps(T.procPub);
-for(let i=0;i<5;i++){stepRun(i);await sleep(600+Math.random()*500);const dts=[ARTICLE.uniq+'%','WebP','HTTPS',T.ok,'dzen.ru'];stepDone(i,dts[i]);bar(Math.round((i+1)/5*100));}
-await sleep(300);
+var i=0;
+function next(){
+if(i>=5){setTimeout(function(){
  $('#doneUrl').textContent='https://dzen.ru/a/'+Date.now().toString(36);
  $('#doneMeta').textContent='«'+ARTICLE.title+'»';
 show('sc-done');speak(T.published);
+},300);return;}
+var rows=$$('#steps .step');var r=rows[i];
+r.classList.add('run');
+setTimeout(function(){
+r.classList.remove('run');r.classList.add('ok');
+r.querySelector('.ic').textContent='●';
+var dts=[ARTICLE.uniq+'%','WebP','HTTPS',T.ok,'dzen.ru'];
+r.querySelector('.dt').textContent=dts[i];
+i++;bar(Math.round(i/5*100));next();
+},650+Math.random()*400);
 }
-function renderSteps(list){$('#steps').innerHTML=list.map(()=>'<div class="step"><div class="ic">○</div><div class="nm"></div><div class="dt"></div></div>').join('');list.forEach((s,i)=>$('#steps').children[i].querySelector('.nm').textContent=s);$('#bar').style.width='0';}
-function stepRun(i){const r=$('#steps').children[i];r.className='step run';r.querySelector('.ic').textContent='◉';}
-function stepDone(i,d){const r=$('#steps').children[i];r.className='step ok';r.querySelector('.ic').textContent='●';if(d)r.querySelector('.dt').textContent=d;bar(Math.round((i+1)/$('#steps').children.length*70));}
+next();
+}
+function renderSteps(list){
+var h='';
+for(var i=0;i<list.length;i++)h+='<div class="step"><div class="ic">○</div><div class="nm"></div><div class="dt"></div></div>';
+ $('#steps').innerHTML=h;
+var rows=$$('#steps .step');
+for(var j=0;j<list.length;j++)rows[j].querySelector('.nm').textContent=list[j];
+ $('#bar').style.width='0';
+}
+function stepDone(i,d){var rows=$$('#steps .step');rows[i].classList.add('ok');rows[i].querySelector('.ic').textContent='●';if(d)rows[i].querySelector('.dt').textContent=d;bar(Math.round((i+1)/rows.length*70));}
 function bar(w){$('#bar').style.width=w+'%';}
 applyLang();
-if(KEY)toScreen('sc-topic');else show('sc-key');
+if(KEY)toTopic();else show('sc-key');
 </script>
 </body>
 </html>
