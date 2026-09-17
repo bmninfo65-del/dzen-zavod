@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ДЗЕН-ЗАВОД v8 — фабрика статей</title>
+<title>ДЗЕН-ЗАВОД v9 — фабрика статей</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700;800&family=Golos+Text:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -100,7 +100,7 @@ h1 em{font-style:italic;color:var(--acc)}
 <header>
 <button id="backBtn" onclick="goBack()">←</button>
 <div class="logo">⚙️</div>
-<div class="brand"><b>ДЗЕН-ЗАВОД <span class="v">v8</span></b><span id="bTag"></span></div>
+<div class="brand"><b>ДЗЕН-ЗАВОД <span class="v">v9</span></b><span id="bTag"></span></div>
 <div class="hright">
 <button class="hbtn" id="langBtn" onclick="toggleLang()">🌐 <span id="langCur">RU</span></button>
 <button class="hbtn" onclick="openKey()">🔑</button>
@@ -210,40 +210,44 @@ zh:{name:'中文',flag:'🇨🇳',kickKey:'设置 · 仅一次',keyH:'连接<em>
 es:{name:'Español',flag:'🇪🇸',kickKey:'CONFIGURACIÓN · UNA VEZ',keyH:'Conecta el <em>cerebro de la fábrica</em>',keyP:'La fábrica reescribe con IA real de Groq. Clave gratis: <b>console.groq.com</b> → API Keys → pega aquí.',keyLbl:'CLAVE GROQ (gsk_…)',keyBtn:'Conectar',keyErr:'Empieza por «gsk_».',save:'Guardar',keyMh:'🔑 Clave IA Groq',keyMp:'Solo en tu navegador. Obtener: console.groq.com → API Keys.',kickTopic:'TALLER 1 · PEDIDOS',topicH1:'El tema entra —',topicH2:'el artículo sale',topicP:'Di o escribe un tema. La fábrica encuentra materiales reales, la IA funde el elegido en un artículo único — sin plagio, en tu idioma.',topicLbl:'TEMA',find:'Buscar',kickRes:'TALLER 2 · MATERIALES',resP:'Elige un material — el taller lo fundirá en artículo único.',backStart:'Al inicio',toList:'Volver a la lista',procH:'Trabajando…',kickArt:'CC · ARTÍCULO EN REVISIÓN',noPlag:'SIN PLAGIO',pub:'⚙️ Publicar en Dzen',covPrev:'Ant.',covNext:'Sig.',covDel:'Eliminar para siempre',newCov:'Otra portada',read:'Leer en voz alta',copy:'Copiar',doneH1:'Artículo',doneH2:'publicado en Dzen',newOrder:'⚙️ Nuevo pedido',tNothing:'Escribe un tema',tNet:'Sin conexión a Wikipedia',tNone:'Nada — prueba otro tema',tKey:'Clave IA incorrecta (🔑)',tLimit:'Límite Groq — 1 minuto',tErr:'Error IA: ',tShort:'Muy corto — elige otro',tCopied:'Artículo copiado',tCopyErr:'Copia manualmente',tMic:'Dictado en Chrome',tKeyOk:'¡Cerebro conectado!',tKeyUp:'Clave actualizada',tDelCov:'Portada eliminada',sel:'Elegir',procSearch:['Consulta al almacén','Selección de artículos','Verificación de fuentes'],procMelt:['Cargando material','Extrayendo texto y portada','La IA funde con palabras propias','CC: antiplagio'],procPub:['CC: unicidad','Empaquetado portada','Envío a dzen.ru','Moderación','Publicación'],stWords:'palabras',stSrc:'fuente: Wikipedia',wait:'ESPERA 5–20 S…',ok:'OK',ready:'Artículo listo. Revisa y aprueba.',published:'El artículo se ha publicado con éxito en la plataforma Dzen.',resFound:'Encontré',resFound2:'materiales sobre',metaChan:'CANAL «DZEN-FÁBRICA» · HECHO POR IA · CAMBIOS PERMITIDOS',prompt:function(t,m){return 'Escribe un artículo Dzen único sobre «'+t+'» en español. Reglas: título primera línea, luego 7-9 párrafos vivos, cada uno en línea nueva, palabras propias, NINGUNA frase del material, detalles y conclusión.\n\nMATERIAL:\n'+m;},chips:['salud','espacio','historia','redes neuronales','psicología','coches'],wiki:'es'}
 };
 var LANGS=['ru','en','de','fr','zh','es'];
-var LANG=lsGet('dz_lang')||'ru';
+var LANG='ru';try{LANG=localStorage.getItem('dz_lang')||'ru';}catch(e){}
 if(!L[LANG])LANG='ru';
 var T=L[LANG];
-var KEY=lsGet('dz_key')||'';
+var KEY='';try{KEY=localStorage.getItem('dz_key')||'';}catch(e){}
 var ARTICLE=null,COVERS=[],COVER_IDX=-1,TOPIC='',RESULTS=[];
 function $(s){return document.querySelector(s);}
 function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 var HIST=[];
-function show(id){HIST.push(id);$$('.screen').forEach(function(s){s.classList.remove('on');});$(id).classList.add('on');window.scrollTo(0,0);$('#backBtn').classList.toggle('on',HIST.length>1);}
+function show(id){try{HIST.push(id);$$('.screen').forEach(function(s){s.classList.remove('on');});var el=$(id);if(el)el.classList.add('on');window.scrollTo(0,0);var b=$('#backBtn');if(b)b.classList.toggle('on',HIST.length>1);}catch(e){}}
 function goBack(){HIST.pop();var p=HIST.pop()||'sc-topic';toScreen(p);}
-function toScreen(id){HIST=[];$$('.screen').forEach(function(s){s.classList.remove('on');});$(id).classList.add('on');$('#backBtn').classList.remove('on');window.scrollTo(0,0);}
+function toScreen(id){try{HIST=[];$$('.screen').forEach(function(s){s.classList.remove('on');});var el=$(id);if(el)el.classList.add('on');var b=$('#backBtn');if(b)b.classList.remove('on');window.scrollTo(0,0);}catch(e){}}
 function toTopic(){toScreen('sc-topic');}
 var toastT;
-function toast(m){var t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toastT);toastT=setTimeout(function(){t.style.display='none';},3000);}
+function toast(m){var t=$('#toast');if(!t)return;t.textContent=m;t.style.display='block';clearTimeout(toastT);toastT=setTimeout(function(){t.style.display='none';},3000);}
 var TAGS={ru:'ТЕМА НА ВХОДЕ — СТАТЬЯ НА ВЫХОДЕ',en:'TOPIC IN — ARTICLE OUT',de:'THEMA REIN — ARTIKEL RAUS',fr:'SUJET DEDANS — ARTICLE DEHORS',zh:'主题输入——文章输出',es:'TEMA DENTRO — ARTÍCULO FUERA'};
 function applyLang(){
-T=L[LANG];document.documentElement.lang=LANG;$('#langCur').textContent=LANG.toUpperCase();
+try{
+T=L[LANG];document.documentElement.lang=LANG;
+var lc=$('#langCur');if(lc)lc.textContent=LANG.toUpperCase();
  $$('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(T[k]!==undefined)el.innerHTML=T[k];});
- $('#bTag').textContent=TAGS[LANG];
+var bt=$('#bTag');if(bt)bt.textContent=TAGS[LANG];
 var h='';for(var i=0;i<T.chips.length;i++)h+='<button class="chip" onclick="quick(this.textContent)">'+esc(T.chips[i])+'</button>';
- $('#chips').innerHTML=h;
+var ch=$('#chips');if(ch)ch.innerHTML=h;
 renderLangMenu();
 if(ARTICLE)renderArticleTexts();
+}catch(e){}
 }
-function renderLangMenu(){var h='';for(var i=0;i<LANGS.length;i++){var c=LANGS[i];h+='<button class="'+(c===LANG?'cur':'')+'" onclick="setLang(\''+c+'\')">'+L[c].flag+' '+L[c].name+'</button>';}$('#langMenu').innerHTML=h;}
-function toggleLang(){$('#langMenu').classList.toggle('on');}
-document.addEventListener('click',function(e){if(!e.target.closest('#langMenu')&&!e.target.closest('#langBtn'))$('#langMenu').classList.remove('on');});
-function setLang(c){LANG=c;lsSet('dz_lang',c);$('#langMenu').classList.remove('on');applyLang();toast(L[c].flag+' '+L[c].name);}
-function openKey(){$('#keyModal').classList.add('on');}
- $('#keyModal').addEventListener('click',function(e){if(e.target.id==='keyModal')this.classList.remove('on');});
+function renderLangMenu(){try{var h='';for(var i=0;i<LANGS.length;i++){var c=LANGS[i];h+='<button class="'+(c===LANG?'cur':'')+'" onclick="setLang(\''+c+'\')">'+L[c].flag+' '+L[c].name+'</button>';}var m=$('#langMenu');if(m)m.innerHTML=h;}catch(e){}}
+function toggleLang(){var m=$('#langMenu');if(m)m.classList.toggle('on');}
+document.addEventListener('click',function(e){if(!e.target.closest('#langMenu')&&!e.target.closest('#langBtn')){var m=$('#langMenu');if(m)m.classList.remove('on');}});
+function setLang(c){LANG=c;lsSet('dz_lang',c);var m=$('#langMenu');if(m)m.classList.remove('on');applyLang();toast(L[c].flag+' '+L[c].name);}
+function openKey(){var k=$('#keyModal');if(k)k.classList.add('on');}
+var km=document.getElementById('keyModal');
+if(km)km.addEventListener('click',function(e){if(e.target.id==='keyModal')km.classList.remove('on');});
 function saveKey(){var v=$('#keyInput').value.trim();if(v.indexOf('gsk_')!==0){$('#keyErr').classList.add('on');return;}KEY=v;lsSet('dz_key',v);toTopic();toast(T.tKeyOk);}
-function saveKey2(){var v=$('#keyInput2').value.trim();if(v.indexOf('gsk_')!==0){$('#keyErr2').classList.add('on');return;}KEY=v;lsSet('dz_key',v);$('#keyModal').classList.remove('on');toast(T.tKeyUp);}
+function saveKey2(){var v=$('#keyInput2').value.trim();if(v.indexOf('gsk_')!==0){$('#keyErr2').classList.add('on');return;}KEY=v;lsSet('dz_key',v);var k=$('#keyModal');if(k)k.classList.remove('on');toast(T.tKeyUp);}
 function mic(){var SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast(T.tMic);return;}var rec=new SR();rec.lang=(LANG==='zh')?'zh-CN':LANG;$('#micBtn').classList.add('on');rec.onresult=function(e){$('#topicInput').value=e.results[0][0].transcript;};rec.onend=function(){$('#micBtn').classList.remove('on');};rec.onerror=function(){$('#micBtn').classList.remove('on');};try{rec.start();}catch(e){}}
 function speak(text){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=(LANG==='zh')?'zh-CN':LANG;var v=speechSynthesis.getVoices().find(function(v){return v.lang&&v.lang.toLowerCase().indexOf(LANG)===0;});if(v)u.voice=v;speechSynthesis.speak(u);}
 function quick(t){$('#topicInput').value=t.trim();startSearch();}
@@ -381,9 +385,16 @@ for(var j=0;j<list.length;j++)rows[j].querySelector('.nm').textContent=list[j];
  $('#bar').style.width='0';
 }
 function stepDone(i,d){var rows=$$('#steps .step');rows[i].classList.add('ok');rows[i].querySelector('.ic').textContent='●';if(d)rows[i].querySelector('.dt').textContent=d;bar(Math.round((i+1)/rows.length*70));}
-function bar(w){$('#bar').style.width=w+'%';}
-applyLang();
-if(KEY)toTopic();else show('sc-key');
+function bar(w){var b=$('#bar');if(b)b.style.width=w+'%';}
+/* === СТАРТ: защита от ошибок + принудительное включение экрана === */
+try{applyLang();}catch(e){}
+try{
+if(!KEY){var k=$('#sc-key');if(k)k.classList.add('on');}
+else{var t=$('#sc-topic');if(t)t.classList.add('on');}
+}catch(e){
+var t2=document.getElementById('sc-topic');
+if(t2)t2.classList.add('on');
+}
 </script>
 </body>
 </html>
